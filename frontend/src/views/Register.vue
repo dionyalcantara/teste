@@ -1,31 +1,36 @@
 <template>
   <section
-    class="container w-50 mx-auto d-flex justify-content-center align-items-center flex-column vh-100"
+    class="mx-auto my-auto rounded-3 border border-primary h-50 d-flex justify-content-center align-items-center flex-column bg-dark text-light p-4 width"
   >
-    <h1 class="w-50 mx-auto">Register</h1>
-    <form @submit.prevent="register" class="w-50 mx-auto">
-      <div class="">
-        <label for="registerName" class="col-sm-2 col-form-label">Name</label>
+    <h2 class="w-100 text-center mb-2">Criar Conta</h2>
+    <form @submit.prevent="register" class="w-100 mx-auto">
+      <div>
+        <label for="registerName" class="col-sm-2 col-form-label">Nome</label>
         <div>
           <input v-model="name" type="text" class="form-control" id="registerName" />
         </div>
       </div>
-      <div class="">
+      <div>
         <label for="registerEmail" class="col-sm-2 col-form-label">Email</label>
         <div>
           <input v-model="email" type="email" class="form-control" id="registerEmail" />
         </div>
       </div>
       <div class="mb-3">
-        <label for="registerPassword" class="col-sm-2 col-form-label">Password</label>
+        <label for="registerPassword" class="col-sm-2 col-form-label">Senha</label>
         <div>
           <input v-model="password" type="password" class="form-control" id="registerPassword" />
         </div>
       </div>
-      <button type="submit" class="w-100 btn btn-primary align-itens-center">Sign in</button>
+      <button type="submit" class="w-100 btn btn-primary align-itens-center">Criar conta</button>
     </form>
 
-    <div v-if="errorMessage" class="w-50 mx-auto alert alert-danger mt-3">
+    <div class="mt-2">
+      <span class="mx-1">Já tem uma conta?</span>
+      <router-link to="/login">Entrar</router-link>
+    </div>
+
+    <div v-if="errorMessage" class="text-center w-100 alert alert-danger mt-3 p-1">
       {{ errorMessage }}
     </div>
   </section>
@@ -60,7 +65,6 @@ export default defineComponent({
         } else {
           this.errorMessage = 'Erro de rede ou servidor.';
         }
-        console.error(error);
         this.name = '';
         this.email = '';
         this.password = '';
@@ -69,3 +73,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.width {
+  width: 450px;
+}
+</style>
